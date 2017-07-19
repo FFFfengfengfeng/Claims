@@ -1,0 +1,86 @@
+body,
+html,
+div,
+a,
+input,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  font: normal normal 12px/20px "微软雅黑";
+  color: #454545;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+/*
+ * ============================================================
+ * 布局（grid）（.g-）：头部、主体、主栏、侧栏、尾部等
+ * ============================================================
+ */
+/*
+ * ============================================================
+ * 模块（module）（.m-）：导航、登录、注册、各种列表、评论、搜索等！
+ * ============================================================
+ */
+.m-tab {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.m-tab .tab-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.m-tab .tab-nav-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+}
+.m-tab .tab-nav-item.z-active {
+  color: red;
+}
+.m-tab .tab-content {
+  position: relative;
+}
+.m-tab .tab-content-item {
+  position: absolute;
+  width: 100%;
+  display: none;
+}
+.m-tab .tab-content-item.z-active {
+  display: block;
+}
+/*
+ * ============================================================
+ * 元件（unit）（.u-）：按钮、输入框、loading、图标等！
+ * ============================================================
+ */
+/*
+ * ============================================================
+ * 功能（function）（.f-）：清除浮动等!
+ * ============================================================
+ */
+/*
+ * ============================================================
+ * 动画（animate）（.a-）：一般的动画!
+ * ============================================================
+ */

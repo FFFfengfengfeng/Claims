@@ -3,12 +3,45 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Tab标签页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="plugins/flexible/flexible.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="dist/css/tab.min.css"/>
 	</head>
 	<body>
-	    <div class="tab">
-	        
+	    <div class="m-tab" id="J_Tab">
+	        <nav class="tab-nav">
+	            <a href="javascript:;" class="tab-nav-item z-active">热门</a>
+	            <a href="javascript:;" class="tab-nav-item">新闻</a>
+	            <a href="javascript:;" class="tab-nav-item">视频</a>
+	            <a href="javascript:;" class="tab-nav-item">公告</a>
+	            <a href="javascript:;" class="tab-nav-item">素材</a>
+	        </nav>
+	        <div class="tab-content">
+	            <section class="tab-content-item z-active" style="background: yellow;">热门</section>
+	            <section class="tab-content-item" style="background: yellowgreen;">新闻</section>
+	            <section class="tab-content-item" style="background: skyblue;">视频</section>
+	            <section class="tab-content-item" style="background: wheat;">公告</section>
+	            <section class="tab-content-item" style="background: aqua;">
+	                <div class="m-tab" id="J_Tab_Two">
+	                	<nav class="tab-nav">
+                            <a href="javascript:;" class="tab-nav-item z-active">个人素材</a>
+                            <a href="javascript:;" class="tab-nav-item">共享素材</a>
+                            <a href="javascript:;" class="tab-nav-item">公司素材</a>
+                        </nav>
+                        <div class="tab-content">
+                            <section class="tab-content-item z-active" style="background: fuchsia;">个人</section>
+                            <section class="tab-content-item z-active" style="background: antiquewhite;">共享</section>
+                            <section class="tab-content-item z-active" style="background: sienna;">公司</section>
+                        </div>
+	                </div>
+	            </section>
+	        </div>
 	    </div>
-		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/tab.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="plugins/jquery/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="dist/js/tab.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript">
+	    	$('#J_Tab').tab();
+	    	$('#J_Tab_Two').tab();
+	    </script>
 	</body>
 </html>
