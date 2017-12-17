@@ -1,0 +1,35 @@
+
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>车主</th>
+        <th>保单号</th>
+        <th>时间</th>
+        <th>位置</th>
+        <th>状态</th>
+        <th>定损员</th>
+        <th>金额(元)</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach name="case" item="i"}
+    <tr>
+        <td>{$i.id}</td>
+        <td>{$i.owner}</td>
+        <td>{$i.order_num}</td>
+        <td>{$i.time}</td>
+        <td>{$i.place}</td>
+        <td>已结案</td>
+        <td>{$i.employee_name}</td>
+        <td>{$i.amount}</td>
+    </tr>
+    {/foreach}
+    </tbody>
+</table>
+{$page}

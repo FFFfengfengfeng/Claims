@@ -1,0 +1,57 @@
+
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>车主</th>
+        <th>保单号</th>
+        <th>时间</th>
+        <th>位置</th>
+        <th>状态</th>
+        <th>定损员</th>
+        <th>金额(元)</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach name="case" item="i"}
+    <tr>
+        <td>{$i.id}</td>
+        <td>{$i.owner}</td>
+        <td>{$i.order_num}</td>
+        <td>{$i.time}</td>
+        <td>{$i.place}</td>
+        <td>
+            {switch name="i.state" }
+            {case value="3"}待预付{/case}
+            {case value="4"}待核赔{/case}
+            {case value="5"}待结案{/case}
+            {default /}默认情况
+            {/switch}
+        </td>
+        <td>{$i.employee_name}</td>
+        <td>{$i.amount}</td>
+        <td>
+            {switch name="i.state" }
+            {case value="3"}
+            <a href="{:url('service/check', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">预付</a>
+            {/case}
+            {case value="4"}
+            <a href="{:url('service/confirm', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">核赔</a>
+            {/case}
+            {case value="5"}
+            <a href="{:url('service/close', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">结案</a>
+            {/case}
+            {default /}默认情况
+            {/switch}
+        </td>
+    </tr>
+    {/foreach}
+    </tbody>
+</table>
+{$page}

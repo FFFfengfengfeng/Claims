@@ -1,0 +1,32 @@
+<form class="layui-form" action="{:url('add:add')}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">车主姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="owner" required  lay-verify="required" placeholder="请输入车主姓名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">保单号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="order_num" required lay-verify="required" placeholder="请输入保单号" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">时间</label>
+        <div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
+            <input type="text" name="time" class="layui-input" placeholder="请选择日期时间" id="test1">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-inline">
+            <input type="text" name="place" required lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>

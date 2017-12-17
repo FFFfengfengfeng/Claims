@@ -1,0 +1,38 @@
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">车主</label>
+        <div class="layui-form-mid layui-word-aux">{$case.owner}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">保单号</label>
+        <div class="layui-form-mid layui-word-aux">{$case.order_num}</div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">时间</label>
+        <div class="layui-form-mid layui-word-aux">{$case.time}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">位置</label>
+        <div class="layui-form-mid layui-word-aux">{$case.place}</div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">指派定损</label>
+        <div class="layui-input-block">
+            <select name="employee_id" lay-verify="required">
+                <option value=""></option>
+                {foreach name="employee" item="i"}
+                    <option value="{$i.id}">{$i.name}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <input type="hidden" name="case_id" value="{$case.id}">
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
