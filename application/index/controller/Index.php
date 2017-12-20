@@ -15,15 +15,21 @@ class Index extends Base
 {
     public function index()
     {
-        $case = Db::table("case") -> where("state", "in", ["0", "1", "2"]) -> paginate(10);
-        $page = $case -> render();
+        $grade = Cookie::get("grade");
+        if ($grade == 1) {
+            return $this -> redirect('add/index');
+        } else {
+            $case = Db::table("case") -> where("state", "in", ["0", "1", "2"]) -> paginate(10);
+            $page = $case -> render();
 
-        $this -> assign([
-            "case" => $case,
-            "page" => $page
-        ]);
+            $this -> assign([
+                "case"  => $case,
+                "page"  => $page,
+            ]);
 
-        return $this -> fetch();
+            return $this -> fetch();
+        }
+
     }
     public function appoint()
     {

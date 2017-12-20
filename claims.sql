@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : project
+Source Server         : FFF
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : claims
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-12-17 14:28:29
+Date: 2017-12-20 18:35:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,8 +36,8 @@ CREATE TABLE `case` (
 -- Records of case
 -- ----------------------------
 INSERT INTO `case` VALUES ('3', '王明', 'AE002017001', '2017-12-06 12:15:42', '广州花都', '6', '3', '王聪 ', '2000');
-INSERT INTO `case` VALUES ('4', '张翠红', 'AE002017002', '2017-12-13 12:46:45', '广州天河', '0', '', '', '');
-INSERT INTO `case` VALUES ('5', '王大雷', 'AE002017003', '2017-12-06 12:47:17', '广州海珠', '0', '', '', '');
+INSERT INTO `case` VALUES ('4', '张翠红', 'AE002017002', '2017-12-13 12:46:45', '广州天河', '4', '1', '陈宏子', '3000');
+INSERT INTO `case` VALUES ('5', '王大雷', 'AE002017003', '2017-12-06 12:47:17', '广州海珠', '1', '3', '王聪 ', '');
 INSERT INTO `case` VALUES ('6', '黄芳', 'AE002017004', '2017-12-07 13:40:22', '广州白云', '0', '', '', '');
 
 -- ----------------------------
@@ -65,13 +65,16 @@ INSERT INTO `employee` VALUES ('5', '尚继鹏');
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `grade` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `grade` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', '123456', '0');
+INSERT INTO `user` VALUES ('2', 'abczzz', '123456', '1');
+INSERT INTO `user` VALUES ('3', '小明', '123456', '1');
+INSERT INTO `user` VALUES ('4', '小红', '123456', '1');

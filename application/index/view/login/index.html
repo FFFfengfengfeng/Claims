@@ -11,41 +11,67 @@
         }
     </style>
 </head>
-<body>
-    <div class="login">
-        <div class="login-box">
-            <p class="login-heading">欢迎登录</p>
-            <form>
-                <div class="layui-form-item">
-                    <input type="text" name="user_name" required lay-verify="required" id="user_name" placeholder="输入姓名" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-item">
-                    <input type="password" name="user_password" required lay-verify="required" id="user_password" placeholder="输入密码" class="layui-input">
-                </div>
-                <button class="layui-btn" lay-submit lay-filter="formDemo" id="submit_login">确定</button>
-            </form>
+<body class="login">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li class="layui-this">登录</li>
+            <li>注册</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <input type="text" name="user_name" id="Login_Name" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <input type="password" name="user_password" id="Login_Password" autocomplete="off"  placeholder="请输入密码" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline text-center">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo" id="Login_Btn">登录</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <input type="text" id="Register_Name"  required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline">
+                            <input type="password" id="Register_Password"  required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-inline text-center">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo" id="Register_Btn">注册</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="toast success clearfix">
-        <p >1111</p>
-        <a href="javascript:;" class="fa fa-close"></a>
-    </div>
-    <div class="toast error clearfix">
-        <p>1111</p>
-        <a href="javascript:;" class="fa fa-close"></a>
-    </div>
     <script src="__ROOT__/static/js/jquery-3.2.1.min.js"></script>
-    <script src="__ROOT__/static/js/main.js"></script>
+    <script src="__ROOT__/static/layui.all.js"></script>
     <script>
+        layui.use('element', function(){
+            var element = layui.element;
+        });
         function isEmpty(str) {
             return (str === '') ? true : false;
         }
-        $('#submit_login').on('click', function (e) {
+        $('body').on('click', '#Login_Btn', function (e) {
             e.preventDefault();
             e.stopPropagation();
-
-            var user_name     = $('#user_name').val(),
-                user_password = $('#user_password').val();
+            var user_name     = $('#Login_Name').val(),
+                user_password = $('#Login_Password').val();
 
             if (!isEmpty(user_name) && !isEmpty(user_password)) {
                 $.ajax({
@@ -60,24 +86,46 @@
                         if (res.success === '1') {
                             window.location.href = "{:url('/index')}";
                         } else {
-                            $.toast({
-                                type: 'error',
-                                message: res.message
-                            });
+                            layer.msg(res.message);
                         }
                     }
                 });
             } else if (isEmpty(user_name)) {
-                $.toast({
-                    type: 'error',
-                    message: '请输入姓名'
-                });
+                layer.msg('请输入姓名');
             } else {
-                $.toast({
-                    type: 'error',
-                    message: '请输入密码'
-                });
+                layer.msg('请输入密码');
             }
+            return false;
+        })
+        $('body').on('click', '#Register_Btn', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var user_name     = $('#Register_Name').val(),
+                user_password = $('#Register_Password').val();
+
+            if (!isEmpty(user_name) && !isEmpty(user_password)) {
+                $.ajax({
+                    url: "{:url('login/register')}",
+                    data: {
+                        user_name    : user_name,
+                        user_password: user_password,
+                    },
+                    dataType: 'json',
+                    method: 'post',
+                    success: function (res) {
+                        if (res.success === '1') {
+                            layer.msg(res.message);
+                        } else {
+                            layer.msg(res.message);
+                        }
+                    }
+                });
+            } else if (isEmpty(user_name)) {
+                layer.msg('请输入姓名');
+            } else {
+                layer.msg('请输入密码');
+            }
+            return false;
         })
     </script>
 </body>
