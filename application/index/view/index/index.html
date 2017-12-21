@@ -8,11 +8,13 @@
     <thead>
     <tr>
         <th>id</th>
-        <th>车主</th>
+        <th>姓名</th>
         <th>保单号</th>
         <th>时间</th>
         <th>位置</th>
         <th>状态</th>
+        <th>保险类型</th>
+        <th>保险项目</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -33,6 +35,8 @@
             {default /}默认情况
             {/switch}
         </td>
+        <td>{$i.order_cate}</td>
+        <td>{$i.order_item}</td>
         <td>
             {switch name="i.state" }
                 {case value="0"}

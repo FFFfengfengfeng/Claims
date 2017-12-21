@@ -33,30 +33,16 @@ class Index extends Base
     }
     public function appoint()
     {
-        if (empty($_REQUEST["employee_id"])) {
-            $case = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> select()[0];
-            $employee = Db::table("employee") -> select();
+        $case = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> select()[0];
+        $employee = Db::table("employee") -> select();
 
-            $this -> assign([
-                "case"     => $case,
-                "employee" => $employee
-            ]);
+        $this -> assign([
+            "case"     => $case,
+            "employee" => $employee
+        ]);
 
-            return $this -> fetch();
-        } else {
-            $employee = Db::table("employee") -> where("id", "=", $_REQUEST["employee_id"]) -> select()[0];
-            $map = [
-                "employee_id"   => $employee["id"],
-                "employee_name" => $employee["name"],
-                "state"         => 1
-            ];
+        return $this -> fetch();
 
-            $result = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update($map);
-
-            if ($result == 1) {
-                return $this -> redirect('index/index');
-            }
-        }
     }
     public function damage()
     {
@@ -78,6 +64,26 @@ class Index extends Base
             if ($result == 1) {
                 return $this -> redirect('service/index');
             }
+        }
+    }
+    public function appointEmp() {
+        $employee_id   = [];
+        $employee_name = [];
+
+        foreach ($_REQUEST["employee_id"] as $index => $item) {
+            array_push($employee_id, $index);
+            array_push($employee_name, $item);
+        }
+        $map = [
+            "employee_id"   => join(',', $employee_id),
+            "employee_name" => join(',', $employee_name),
+            "state"         => 1
+        ];
+//
+        $result = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update($map);
+
+        if ($result == 1) {
+            return $this -> redirect('index/index');
         }
     }
 }

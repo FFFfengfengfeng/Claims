@@ -1,0 +1,35 @@
+<a href="{:url('order/add')}" class="layui-btn layui-btn-primary">添加保单</a>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>受保人</th>
+        <th>保单号</th>
+        <th>保险类型</th>
+        <th>保险项目</th>
+        <th>金额</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach name="order" item="i"}
+    <tr>
+        <th>{$i.id}</th>
+        <th>{$i.user_name}</th>
+        <th>{$i.order_num}</th>
+        <th>{$i.order_cate_name}</th>
+        <th>{$i.order_item_name}</th>
+        <th>{$i.amount}</th>
+        <th>
+            <a href="{:url('order/delete', ['id' => $i.id])}" class="layui-btn layui-btn-primary">删除</a>
+        </th>
+    </tr>
+    {/foreach}
+    </tbody>
+</table>
+{$page}

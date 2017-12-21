@@ -61,7 +61,9 @@
                     <!--</dl>-->
                 <!--</li>-->
                 {if condition="$_COOKIE['grade']" value="1"}
-                <li class="layui-nav-item {eq name='$Request.controller' value='Add'}layui-this{/eq}"><a href="{:url('Add/index')}">保险报案</a></li>
+                <li class="layui-nav-item {eq name='$Request.controller' value='Order'}layui-this{/eq}"><a href="{:url('order/index')}">我的保单</a></li>
+                <li class="layui-nav-item {eq name='$Request.controller' value='Add'}layui-this{/eq}"><a href="{:url('Add/index')}">报案中心</a></li>
+                <li class="layui-nav-item {eq name='$Request.controller' value='Speed'}layui-this{/eq}"><a href="{:url('Speed/index')}">案件进度</a></li>
                 {else /}
                 <li class="layui-nav-item {eq name='$Request.controller' value='Index'}layui-this{/eq}"><a href="{:url('index/index')}">案件列表</a></li>
                 <li class="layui-nav-item {eq name='$Request.controller' value='Service'}layui-this{/eq}"><a href="{:url('service/index')}">业务管理</a></li>
@@ -83,11 +85,11 @@
 </div>
 <script src="__ROOT__/static/js/jquery-3.2.1.min.js"></script>
 <script src="__ROOT__/static/layui.all.js"></script>
+<script src="__ROOT__/static/js/main.js"></script>
 <script>
     //JavaScript代码区域
     layui.use('element', function(){
         var element = layui.element;
-
     });
     layui.use('laydate', function(){
         var laydate = layui.laydate;
@@ -97,7 +99,66 @@
             elem: '#test1', //指定元素
             type: 'datetime'
         });
+        laydate.render({
+            elem: '#Order_Start_Time', //指定元素
+            type: 'datetime'
+        });
+        laydate.render({
+            elem: '#Order_End_Time', //指定元素
+            type: 'datetime'
+        });
     });
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('select(Order_Select)', function(data){
+            getOrderItem(data.value, function (res) {
+                if (res.success === '1') {
+                    var str = '';
+                    $.each(res.data, function (i) {
+                        str += '<input type="checkbox" name="order_item[' + res.data[i].id + ']" value="' + res.data[i].id + '" title="' + res.data[i].name + '">';
+                    });
+                    $('#Order_Item').html(str);
+                    form.render();
+                }
+            });
+        });
+        function getOrderItem(id, cb) {
+            $.ajax({
+                url: '{:url("order/getItem")}',
+                data: {
+                    cate_id: id,
+                },
+                dataType: 'json',
+                method: 'post',
+                success: function (res) {
+                    cb(res);
+                }
+            })
+        }
+        function getOrderOne(id, cb) {
+            $.ajax({
+                url: '{:url("order/getOrderOne")}',
+                data: {
+                    order_id: id,
+                },
+                dataType: 'json',
+                method: 'post',
+                success: function (res) {
+                    cb(res);
+                }
+            });
+        }
+        form.on('select(Case_Select_Order)', function (data) {
+            getOrderOne(data.value, function (res) {
+                if (res.success === '1') {
+                    $('#Case_Order_Cate').val(res.data.order_cate_name);
+                    $('#Case_Order_Item').val(res.data.order_item_name);
+                    form.render();
+                }
+            });
+        });
+    });
+
 </script>
 </body>
 </html>
