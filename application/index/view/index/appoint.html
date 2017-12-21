@@ -1,11 +1,19 @@
-<form class="layui-form" action="">
+<form class="layui-form" action="{:url('index/appointEmp')}">
     <div class="layui-form-item">
-        <label class="layui-form-label">车主</label>
+        <label class="layui-form-label">姓名</label>
         <div class="layui-form-mid layui-word-aux">{$case.owner}</div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">保单号</label>
         <div class="layui-form-mid layui-word-aux">{$case.order_num}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">保险类型</label>
+        <div class="layui-form-mid layui-word-aux">{$case.order_cate}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">保险项目</label>
+        <div class="layui-form-mid layui-word-aux">{$case.order_item}</div>
     </div>
 
     <div class="layui-form-item">
@@ -20,12 +28,9 @@
     <div class="layui-form-item">
         <label class="layui-form-label">指派定损</label>
         <div class="layui-input-block">
-            <select name="employee_id" lay-verify="required">
-                <option value=""></option>
-                {foreach name="employee" item="i"}
-                    <option value="{$i.id}">{$i.name}</option>
-                {/foreach}
-            </select>
+            {foreach name="employee" item="i"}
+                <input type="checkbox" name="employee_id[{$i.id}]" value="{$i.name}" title="{$i.name}">
+            {/foreach}
         </div>
     </div>
     <input type="hidden" name="case_id" value="{$case.id}">

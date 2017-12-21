@@ -30,10 +30,14 @@ class Login extends Controller
         } else if ($_POST["user_password"] != $result[0]["password"]) {
             $message = "密码错误";
         } else {
-            $data = $result[0]["id"];
+            $uid     = $result[0]["id"];
+            $name    = $result[0]["name"];
+            $grade   = $result[0]["grade"];
             $success = "1";
             $message = "获取成功";
-            Cookie::set('uid', $result[0]["id"], 7200);
+            Cookie::set('uid', $uid, 7200);
+            Cookie::set('name', $name, 7200);
+            Cookie::set('grade', $grade, 7200);
         }
         $json = array("success" => $success, "message" => $message, "data" => $data);
 
@@ -44,5 +48,29 @@ class Login extends Controller
         Cookie::delete("uid");
 
         $this -> redirect('index');
+    }
+    public function register() {
+        $name = $_POST["user_name"];
+        $user = Db::table("user") -> where("name", "=", $name) -> select();
+
+        $map = [
+            "name"     => $_POST["user_name"],
+            "grade"    => 1,
+            "password" => $_POST["user_password"]
+        ];
+        $success = "0";
+        $message = "注册失败";
+        if (empty($user)) {
+            $result = Db::table("user") -> insert($map);
+            if ($result === 1) {
+                $success = "1";
+                $message = "注册成功,请登录";
+            }
+        } else {
+            $message = "注册失败,用户名存在";
+        }
+        $json = array("success" => $success, "message" => $message);
+
+        return json($json);
     }
 }

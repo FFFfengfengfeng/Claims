@@ -1,7 +1,7 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
-Source Server         : project
+Source Server         : FFF
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : claims
@@ -10,8 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-12-19 00:24:32
-*/
+
+Date: 2017-12-21 18:13:10
+
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -21,24 +22,43 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `case`;
 CREATE TABLE `case` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` varchar(255) NOT NULL,
-  `order_num` varchar(255) NOT NULL,
-  `time` datetime NOT NULL,
-  `place` varchar(255) NOT NULL,
-  `state` varchar(255) NOT NULL,
-  `employee_id` varchar(255) NOT NULL,
-  `employee_name` varchar(255) NOT NULL,
-  `amount` varchar(255) NOT NULL,
+  `owner` varchar(255) DEFAULT NULL,
+  `order_num` varchar(255) DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `place` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `employee_id` varchar(255) DEFAULT NULL,
+  `employee_name` varchar(255) DEFAULT NULL,
+  `amount` varchar(255) DEFAULT NULL,
+  `order_cate` varchar(255) DEFAULT NULL,
+  `order_item` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of case
 -- ----------------------------
-INSERT INTO `case` VALUES ('3', '王明', 'AE002017001', '2017-12-06 12:15:42', '广州花都', '6', '3', '王聪 ', '2000');
-INSERT INTO `case` VALUES ('4', '张翠红', 'AE002017002', '2017-12-13 12:46:45', '广州天河', '0', '', '', '');
-INSERT INTO `case` VALUES ('5', '王大雷', 'AE002017003', '2017-12-06 12:47:17', '广州海珠', '0', '', '', '');
-INSERT INTO `case` VALUES ('6', '黄芳', 'AE002017004', '2017-12-07 13:40:22', '广州白云', '0', '', '', '');
+INSERT INTO `case` VALUES ('12', '小明', 'ES1513837065', '2017-12-21 15:58:10', '广州海珠', '1', '1,2,3', '陈宏子,陈迪,王聪 ', null, '车险', '交强险,第三方责任险,盗抢险,车身刮痕,玻璃单独破碎', '3');
+
+-- ----------------------------
+-- Table structure for cate
+-- ----------------------------
+DROP TABLE IF EXISTS `cate`;
+CREATE TABLE `cate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cate
+-- ----------------------------
+INSERT INTO `cate` VALUES ('1', '车险');
+INSERT INTO `cate` VALUES ('2', '意外');
+INSERT INTO `cate` VALUES ('3', '健康');
+INSERT INTO `cate` VALUES ('4', '财产');
+INSERT INTO `cate` VALUES ('5', '人寿');
 
 -- ----------------------------
 -- Table structure for employee
@@ -60,18 +80,76 @@ INSERT INTO `employee` VALUES ('4', '李凯生');
 INSERT INTO `employee` VALUES ('5', '尚继鹏');
 
 -- ----------------------------
+-- Table structure for item
+-- ----------------------------
+DROP TABLE IF EXISTS `item`;
+CREATE TABLE `item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `cate_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of item
+-- ----------------------------
+INSERT INTO `item` VALUES ('1', '交强险', '1');
+INSERT INTO `item` VALUES ('2', '第三方责任险', '1');
+INSERT INTO `item` VALUES ('3', '盗抢险', '1');
+INSERT INTO `item` VALUES ('4', '车身刮痕', '1');
+INSERT INTO `item` VALUES ('5', '玻璃单独破碎', '1');
+INSERT INTO `item` VALUES ('6', '意外身故', '2');
+INSERT INTO `item` VALUES ('7', '意外残疾', '2');
+INSERT INTO `item` VALUES ('8', '意外伤害', '2');
+INSERT INTO `item` VALUES ('9', '重大疾病', '3');
+INSERT INTO `item` VALUES ('10', '轻症疾病', '3');
+INSERT INTO `item` VALUES ('11', '财产损失', '4');
+INSERT INTO `item` VALUES ('12', '货物运输', '4');
+INSERT INTO `item` VALUES ('13', '农业自然灾害', '4');
+INSERT INTO `item` VALUES ('14', '养老储蓄', '5');
+INSERT INTO `item` VALUES ('15', '定期人寿', '5');
+
+-- ----------------------------
+-- Table structure for order
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) DEFAULT NULL,
+  `order_num` varchar(255) DEFAULT NULL,
+  `order_cate` varchar(255) DEFAULT NULL,
+  `order_item` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `amount` varchar(255) DEFAULT NULL,
+  `order_item_name` varchar(255) DEFAULT NULL,
+  `order_cate_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
+INSERT INTO `order` VALUES ('4', 'abczzz', 'ES1513832000', '1', '1,2,3,4,5', '2', '5000', '交强险,第三方责任险,盗抢险,车身刮痕,玻璃单独破碎', '车险');
+INSERT INTO `order` VALUES ('6', 'abczzz', 'ES1513837024', '5', '14', '2', '100000', '养老储蓄', '人寿');
+INSERT INTO `order` VALUES ('7', '小明', 'ES1513837065', '1', '1,2,3,4,5', '3', '5000', '交强险,第三方责任险,盗抢险,车身刮痕,玻璃单独破碎', '车险');
+INSERT INTO `order` VALUES ('8', '小明', 'ES1513839433', '3', '9,10', '3', '6000', '重大疾病,轻症疾病', '健康');
+
+-- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `grade` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `grade` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', '123456', '0');
+INSERT INTO `user` VALUES ('2', 'abczzz', '123456', '1');
+INSERT INTO `user` VALUES ('3', '小明', '123456', '1');
+INSERT INTO `user` VALUES ('4', '小红', '123456', '1');

@@ -1,0 +1,44 @@
+
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>姓名</th>
+        <th>保单号</th>
+        <th>时间</th>
+        <th>位置</th>
+        <th>状态</th>
+        <th>保险类型</th>
+        <th>保险项目</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach name="case" item="i"}
+        <tr>
+            <td>{$i.id}</td>
+            <td>{$i.owner}</td>
+            <td>{$i.order_num}</td>
+            <td>{$i.time}</td>
+            <td>{$i.place}</td>
+            <td>
+                {switch name="$i.state" }
+                    {case value="0"}未受理{/case}
+                    {case value="1"}待定损{/case}
+                    {default /}默认情况
+                {/switch}
+            </td>
+            <td>{$i.order_cate}</td>
+            <td>{$i.order_item}</td>
+            <td>
+                <a href="{:url('speed/detail')}" class="layui-btn layui-btn-primary">详情</a>
+            </td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
