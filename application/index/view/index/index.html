@@ -30,8 +30,8 @@
             {switch name="i.state" }
             {case value="0"}待处理{/case}
             {case value="1"}待定损{/case}
-            {case value="2"}待立案{/case}
-            {case value="3"}已立案{/case}
+            {case value="2"}待预付{/case}
+            {case value="3"}待立案{/case}
             {default /}默认情况
             {/switch}
         </td>
@@ -46,10 +46,10 @@
                     <a href="{:url('index/damage', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">定损</a>
                 {/case}
                 {case value="2"}
-                    <a href="{:url('index/damage', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">立案</a>
+                    <a href="{:url('index/lian', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">立案</a>
                 {/case}
                 {case value="3"}
-                    <a href="javascript:;" class="layui-btn layui-btn-primary">已立案</a>
+                    <a href="{:url('index/lian', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">立案</a>
                 {/case}
                 {default /}默认情况
             {/switch}

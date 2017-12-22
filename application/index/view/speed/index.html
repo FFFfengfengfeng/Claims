@@ -30,6 +30,11 @@
                 {switch name="$i.state" }
                     {case value="0"}未受理{/case}
                     {case value="1"}待定损{/case}
+                    {case value="2"}<a href="{:url('index/pay', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">点击预付</a>{/case}
+                    {case value="3"}待定案{/case}
+                    {case value="4"}待核赔{/case}
+                    {case value="5"}已核赔{/case}
+                    {case value="6"}已结案{/case}
                     {default /}默认情况
                 {/switch}
             </td>

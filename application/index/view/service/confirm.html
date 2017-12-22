@@ -25,14 +25,26 @@
         <div class="layui-form-mid layui-word-aux">{$case.amount}</div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">保险类型</label>
+        <div class="layui-form-mid layui-word-aux">{$case.order_cate}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">保险项目</label>
+        <div class="layui-form-mid layui-word-aux">{$case.order_item}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-form-mid layui-word-aux">{$case.intro}</div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
-        <div class="layui-form-mid layui-word-aux">待核损</div>
+        <div class="layui-form-mid layui-word-aux">待核赔</div>
     </div>
     <input type="hidden" name="case_id" value="{$case.id}">
     <input type="hidden" name="pass" value="1">
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">核损</button>
+            <button class="layui-btn" lay-submit lay-filter="formDemo">核赔</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>

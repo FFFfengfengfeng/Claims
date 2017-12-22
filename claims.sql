@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-12-22 11:00:42
+Date: 2017-12-22 16:56:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,13 +32,14 @@ CREATE TABLE `case` (
   `order_cate` varchar(255) DEFAULT NULL,
   `order_item` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `intro` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of case
 -- ----------------------------
-INSERT INTO `case` VALUES ('14', '小明', 'ES1513837065', '2017-12-22 09:44:17', '广州芳村', '1', '1,2,3', '陈宏子,陈迪,王聪 ', null, '车险', '交强险,第三方责任险,盗抢险,车身刮痕,玻璃单独破碎', '3');
+INSERT INTO `case` VALUES ('18', '小红', 'ES1513915001', '2017-12-22 16:42:52', '广州芳村', '6', '1,2,3', '陈宏子,陈迪,王聪 ', '2000', '车险', '交强险,第三方责任险,盗抢险,车身刮痕,玻璃单独破碎', '4', '车身受损');
 
 -- ----------------------------
 -- Table structure for cate
@@ -124,7 +125,7 @@ CREATE TABLE `order` (
   `order_cate_name` varchar(255) DEFAULT NULL,
   `user_phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
@@ -134,6 +135,9 @@ INSERT INTO `order` VALUES ('6', 'abczzz', 'ES1513837024', '5', '14', '2', '1000
 INSERT INTO `order` VALUES ('7', '小明', 'ES1513837065', '1', '1,2,3,4,5', '3', '5000', '交强险,第三方责任险,盗抢险,车身刮痕,玻璃单独破碎', '车险', '13800138001');
 INSERT INTO `order` VALUES ('9', '小明', 'ES1513908715', '3', '9,10', '3', '8000', '重大疾病,轻症疾病', '健康', '13800138001');
 INSERT INTO `order` VALUES ('10', '小明', 'ES1513908734', '2', '6,7,8', '3', '15000', '意外身故,意外残疾,意外伤害', '意外', '13800138001');
+INSERT INTO `order` VALUES ('11', '小红', 'ES1513915001', '1', '1,2,3,4,5', '4', '5000', '交强险,第三方责任险,盗抢险,车身刮痕,玻璃单独破碎', '车险', '13800138002');
+INSERT INTO `order` VALUES ('13', '小红', 'ES1513915029', '3', '9,10', '4', '15000', '重大疾病,轻症疾病', '健康', '13800138002');
+INSERT INTO `order` VALUES ('14', '小红', 'ES1513915046', '5', '14,15', '4', '8000', '养老储蓄,定期人寿', '人寿', '13800138002');
 
 -- ----------------------------
 -- Table structure for speed
@@ -145,13 +149,18 @@ CREATE TABLE `speed` (
   `intro` varchar(255) DEFAULT NULL,
   `case_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of speed
 -- ----------------------------
-INSERT INTO `speed` VALUES ('2', '2017-12-22 09:44:17', '用户小明于2017-12-22 09:44:17报案<br/>报案地址广州芳村', '14');
-INSERT INTO `speed` VALUES ('3', '2017:12:22 10:30', '已经指派陈宏子,陈迪,王聪 定损员前往定损', '14');
+INSERT INTO `speed` VALUES ('17', '2017-12-22 16:42:52', '用户小红于2017-12-22 16:42:52报案<br/>报案地址广州芳村', '18');
+INSERT INTO `speed` VALUES ('18', '2017:12:22 16:43:12', '已经指派陈宏子,陈迪,王聪 定损员前往定损', '18');
+INSERT INTO `speed` VALUES ('19', '2017:12:22 16:43:32', '定损金额: 2000<br/>描述: 车身受损<br/>', '18');
+INSERT INTO `speed` VALUES ('20', '2017:12:22 16:43:47', '用户小红已经预付了金额', '18');
+INSERT INTO `speed` VALUES ('21', '2017:12:22 16:43:59', '已立案,等待核赔', '18');
+INSERT INTO `speed` VALUES ('22', '2017:12:22 16:44:49', '案件已经过审核,赔偿已经打进绑定银行卡', '18');
+INSERT INTO `speed` VALUES ('23', '2017:12:22 16:49:22', '已结案', '18');
 
 -- ----------------------------
 -- Table structure for user

@@ -15,7 +15,7 @@ class Service extends Base
 {
     public function index()
     {
-        $case = Db::table("case") -> where("state", "in", ["3", "4", "5"]) -> paginate(10);
+        $case = Db::table("case") -> where("state", "in", ["4", "5"]) -> paginate(10);
         $page = $case -> render();
 
         $this -> assign([
@@ -52,9 +52,14 @@ class Service extends Base
             ]);
             return $this -> fetch();
         } else {
-            $result = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update(["state" => "5"]);
+            $resultCas = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update(["state" => "5"]);
+            $resultSpe = Db::table("speed") -> insert([
+                "time"    => date("Y:m:d H:i:s"),
+                "intro"   => "案件已经过审核,赔偿已经打进绑定银行卡",
+                "case_id" => $_REQUEST["case_id"]
+            ]);
 
-            if ($result == 1) {
+            if ($resultCas == 1 && $resultSpe == 1) {
                 return $this -> redirect('service/index');
             }
         }
@@ -69,9 +74,13 @@ class Service extends Base
             ]);
             return $this -> fetch();
         } else {
-            $result = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update(["state" => "6"]);
-
-            if ($result == 1) {
+            $resultCas = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update(["state" => "6"]);
+            $resultSpe = Db::table("speed") -> insert([
+                "time"    => date("Y:m:d H:i:s"),
+                "intro"   => "已结案",
+                "case_id" => $_REQUEST["case_id"]
+            ]);
+            if ($resultCas == 1 && $resultSpe == 1) {
                 return $this -> redirect('later/index');
             }
         }

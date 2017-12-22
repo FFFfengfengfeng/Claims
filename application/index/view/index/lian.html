@@ -1,4 +1,4 @@
-<form class="layui-form" action="">
+<form class="layui-form" action="{:url('index/filing')}">
     <div class="layui-form-item">
         <label class="layui-form-label">车主</label>
         <div class="layui-form-mid layui-word-aux">{$case.owner}</div>
@@ -22,35 +22,28 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">定损金额</label>
-        <div class="layui-input-block">
-            <input type="number" name="amount" required  lay-verify="required" placeholder="请输入定损金额" autocomplete="off" class="layui-input">
-        </div>
+        <div class="layui-form-mid layui-word-aux">{$case.amount}</div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">定损描述</label>
-        <div class="layui-input-block">
-            <input type="text" name="intro" required  lay-verify="required" placeholder="请输入定损描述" autocomplete="off" class="layui-input">
-        </div>
+        <div class="layui-form-mid layui-word-aux">{$case.intro}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-form-mid layui-word-aux">{eq name="$case.state" value="2"}等待预付{/eq}</div>
+        <div class="layui-form-mid layui-word-aux">{eq name="$case.state" value="3"}已经预付{/eq}</div>
     </div>
     <input type="hidden" name="case_id" value="{$case.id}">
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            {eq name="$case.state" value="2"}
+            <a href="javascript:;" class="layui-btn" id="Li_An">立案</a>
+            {/eq}
+            {eq name="$case.state" value="3"}
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立案</button>
+            {/eq}
+
             <a href="{:url('index/index')}" type="reset" class="layui-btn layui-btn-primary">取消</a>
-        </div>
-    </div>
-</form>
-<form class="layui-form" action="{:url('index/close')}">
-    <div class="layui-form-item">
-        <label class="layui-form-label">拒绝受保</label>
-        <div class="layui-input-block">
-            <input type="" name="intro" required  lay-verify="required" placeholder="填写理由" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <input type="hidden" name="case_id" value="{$case.id}">
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">确认</button>
         </div>
     </div>
 </form>
