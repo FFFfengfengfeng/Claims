@@ -80,10 +80,18 @@ class Index extends Base
             "state"         => 1
         ];
 //
-        $result = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update($map);
-
-        if ($result == 1) {
+        $resultEmp = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update($map);
+        $resultSpe = Db::table("speed") -> insert([
+            "time"    => date("Y:m:d h:s"),
+            "case_id" => $_REQUEST["case_id"],
+            "intro"   => "已经指派" . join(',', $employee_name) . "定损员前往定损"
+        ]);
+        if ($resultEmp == 1 && $resultSpe == 1) {
             return $this -> redirect('index/index');
         }
+    }
+    public function close()
+    {
+
     }
 }

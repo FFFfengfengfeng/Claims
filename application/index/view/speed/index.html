@@ -36,7 +36,7 @@
             <td>{$i.order_cate}</td>
             <td>{$i.order_item}</td>
             <td>
-                <a href="{:url('speed/detail')}" class="layui-btn layui-btn-primary">详情</a>
+                <a href="{:url('speed/detail', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">详情</a>
             </td>
         </tr>
     {/foreach}

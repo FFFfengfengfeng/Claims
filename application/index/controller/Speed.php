@@ -28,6 +28,13 @@ class Speed extends Base
     }
     public function detail()
     {
+        $case_id = $_REQUEST["case_id"];
+
+        $speed = Db::table("speed") -> where("case_id", "=", $case_id) -> select();
+
+        $this -> assign([
+            "speed" => $speed
+        ]);
 
         return $this -> fetch();
     }

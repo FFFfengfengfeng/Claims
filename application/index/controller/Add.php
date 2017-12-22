@@ -35,9 +35,17 @@ class Add extends Base
             "order_item" => $_REQUEST["order_item"],
             "user_id"    => Cookie::get("uid"),
         ];
+
         $order_num = Db::table("order") -> where("id", "=", $_REQUEST["order_num"]) -> select()[0]["order_num"];
         $map["order_num"] = $order_num;
-        $result = Db::table("case") -> insert($map);
+        $case_id = Db::table("case") -> insertGetId($map);
+
+        $time = $_REQUEST["time"];
+        $result = Db::table("speed") -> insert([
+            "time" => $time,
+            "case_id" => $case_id,
+            "intro" => "用户" . Cookie::get("name") . "于" . $time . "报案<br/>" . "报案地址" . $_REQUEST["place"]
+        ]);
 
         if ($result == 1){
             return $this -> redirect('speed/index');
