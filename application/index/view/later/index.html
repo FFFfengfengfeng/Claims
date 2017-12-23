@@ -1,4 +1,3 @@
-
 <table class="layui-table">
     <colgroup>
         <col width="150">
@@ -14,6 +13,7 @@
         <th>位置</th>
         <th>状态</th>
         <th>定损员</th>
+        <th>操作</th>
     </tr>
     </thead>
     <tbody>
@@ -26,6 +26,9 @@
         <td>{$i.place}</td>
         <td>已结案</td>
         <td>{$i.employee_name}</td>
+        <td>
+            <a href="{:url('later/follow', ['case_id' => $i.id])}" class="layui-btn layui-btn-primary">后期跟进</a>
+        </td>
     </tr>
     {/foreach}
     </tbody>

@@ -67,7 +67,8 @@
                 {else /}
                 <li class="layui-nav-item {eq name='$Request.controller' value='Index'}layui-this{/eq}"><a href="{:url('index/index')}">案件列表</a></li>
                 <li class="layui-nav-item {eq name='$Request.controller' value='Service'}layui-this{/eq}"><a href="{:url('service/index')}">业务管理</a></li>
-                <li class="layui-nav-item {eq name='$Request.controller' value='Later'}layui-this{/eq}"><a href="{:url('later/index')}">已结案</a></li>
+                <li class="layui-nav-item {eq name='$Request.controller' value='Later'}layui-this{/eq}"><a href="{:url('later/index')}">结案列表</a></li>
+                <li class="layui-nav-item {eq name='$Request.controller' value='Follow'}layui-this{/eq}"><a href="{:url('Follow/index')}">跟进列表</a></li>
                 {/if}
 
             </ul>

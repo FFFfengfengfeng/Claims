@@ -1,10 +1,14 @@
-<form class="layui-form" action="">
+<form class="layui-form" action="{:url('follow/people')}">
     <div class="layui-form-item">
-        <label class="layui-form-label">姓名</label>
+        <label class="layui-form-label">被跟进人</label>
         <div class="layui-form-mid layui-word-aux">{$case.owner}</div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">保单号</label>
+        <label class="layui-form-label">联系人电话</label>
+        <div class="layui-form-mid layui-word-aux">{$user_phone}</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">跟进单号</label>
         <div class="layui-form-mid layui-word-aux">{$case.order_num}</div>
     </div>
 
@@ -33,19 +37,29 @@
         <div class="layui-form-mid layui-word-aux">{$case.order_item}</div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">描述</label>
+        <label class="layui-form-label">保险项目</label>
         <div class="layui-form-mid layui-word-aux">{$case.intro}</div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">状态</label>
-        <div class="layui-form-mid layui-word-aux">待核赔</div>
+        <div class="layui-form-mid layui-word-aux">已结案</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">指派跟进人</label>
+        <div class="layui-input-block">
+            <select name="follow_name" lay-verify="required">
+                <option value=""></option>
+                {foreach name="employee" item="i"}
+                <option value="{$i.id}">{$i.name}</option>
+                {/foreach}
+            </select>
+        </div>
     </div>
     <input type="hidden" name="case_id" value="{$case.id}">
-    <input type="hidden" name="pass" value="1">
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">核赔</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <button class="layui-btn" lay-submit lay-filter="formDemo">确定</button>
+            <a href="{:url('service/index')}" class="layui-btn layui-btn-primary">取消</a>
         </div>
     </div>
 </form>

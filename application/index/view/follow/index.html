@@ -1,0 +1,32 @@
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>被跟进人姓名</th>
+        <th>被跟进人手机</th>
+        <th>时间</th>
+        <th>跟进人姓名</th>
+        <th>跟进人手机</th>
+        <th>跟进单号</th>
+    </tr>
+    </thead>
+    <tbody>
+    {foreach name="follow" item="i"}
+        <tr>
+            <td>{$i.id}</td>
+            <td>{$i.user_name}</td>
+            <td>{$i.user_phone}</td>
+            <td>{$i.time}</td>
+            <td>{$i.follow_name}</td>
+            <td>{$i.follow_phone}</td>
+            <td>{$i.order_num}</td>
+        </tr>
+    {/foreach}
+    </tbody>
+</table>
+{$page}

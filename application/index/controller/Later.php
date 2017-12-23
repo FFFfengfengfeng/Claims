@@ -24,4 +24,20 @@ class Later extends Base
         ]);
         return $this -> fetch();
     }
+    public function follow()
+    {
+        $case_id = $_REQUEST["case_id"];
+
+        $case       = Db::table("case") -> where("id", "=", $case_id) -> select()[0];
+        $order_num  = $case["order_num"];
+        $user_phone = Db::table("order") -> where("order_num", "=", $order_num) -> select()[0]["user_phone"];
+        $employee   = Db::table("employee") -> select();
+
+        $this -> assign([
+            "case"       => $case,
+            "employee"   => $employee,
+            "user_phone" => $user_phone,
+        ]);
+        return $this -> fetch();
+    }
 }
