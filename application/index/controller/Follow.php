@@ -32,7 +32,7 @@ class Follow extends Base
         $employee = Db::table("employee") -> where("id", "=", $employee_id) -> select()[0];
         $case     = Db::table("case") -> where("id", "=", $case_id) -> select()[0];
         $order    = Db::table("order") -> where("order_num", "=", $case["order_num"]) -> select()[0];
-        $time     = date("Y:m:d H:i:s");
+        $time     = date("Y-m-d H:i:s");
         $map = [
             "order_num"    => $case["order_num"],
             "user_name"    => $case["owner"],

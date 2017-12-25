@@ -65,7 +65,7 @@ class Index extends Base
                 "case_id" => $_REQUEST["case_id"],
                 "intro"   => "定损金额: " . $_REQUEST["amount"] . "<br/>" .
                              "描述: " . $_REQUEST["intro"] . "<br/>",
-                "time"    => date("Y:m:d H:i:s")
+                "time"    => date("Y-m-d H:i:s")
             ]);
             if ($resultCas == 1 && $resultSpe == 1) {
                 return $this -> redirect('index/index');
@@ -88,7 +88,7 @@ class Index extends Base
 //
         $resultEmp = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update($map);
         $resultSpe = Db::table("speed") -> insert([
-            "time"    => date("Y:m:d H:i:s"),
+            "time"    => date("Y-m-d H:i:s"),
             "case_id" => $_REQUEST["case_id"],
             "intro"   => "已经指派" . join(',', $employee_name) . "定损员前往定损"
         ]);
@@ -100,7 +100,7 @@ class Index extends Base
     {
         $case_id = $_REQUEST["case_id"];
         $intro   = $_REQUEST["intro"];
-        $time    = date("Y:m:d H:i:s");
+        $time    = date("Y-m-d H:i:s");
 
         $resultCas = Db::table("case") -> where("id", "=", $case_id) -> update([
             "state" => "6"
@@ -132,7 +132,7 @@ class Index extends Base
             "state" => 4
         ]);
         $resultSpe = Db::table("speed") -> insert([
-            "time"    => date("Y:m:d H:i:s"),
+            "time"    => date("Y-m-d H:i:s"),
             "intro"   => "已立案,等待核赔",
             "case_id" => $case_id
         ]);
@@ -149,7 +149,7 @@ class Index extends Base
             "state" => 3
         ]);
         $resultSpe = Db::table("speed") -> insert([
-            "time"    => date("Y:m:d H:i:s"),
+            "time"    => date("Y-m-d H:i:s"),
             "intro"   => "用户" . Cookie::get("name") . "已经预付了金额",
             "case_id" => $case_id
         ]);

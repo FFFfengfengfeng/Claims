@@ -54,7 +54,7 @@ class Service extends Base
         } else {
             $resultCas = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update(["state" => "5"]);
             $resultSpe = Db::table("speed") -> insert([
-                "time"    => date("Y:m:d H:i:s"),
+                "time"    => date("Y-m-d H:i:s"),
                 "intro"   => "案件已经过审核,赔偿已经打进绑定银行卡",
                 "case_id" => $_REQUEST["case_id"]
             ]);
@@ -76,7 +76,7 @@ class Service extends Base
         } else {
             $resultCas = Db::table("case") -> where("id", "=", $_REQUEST["case_id"]) -> update(["state" => "6"]);
             $resultSpe = Db::table("speed") -> insert([
-                "time"    => date("Y:m:d H:i:s"),
+                "time"    => date("Y-m-d H:i:s"),
                 "intro"   => "已结案",
                 "case_id" => $_REQUEST["case_id"]
             ]);
