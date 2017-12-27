@@ -20,15 +20,14 @@
     height: 100%;
     background: url("../images/login_bg.jpg") no-repeat 100% 100%;
     position: relative;
+    overflow: hidden;
 }
 .login .layui-tab{
-    margin: 0;
-    position: absolute;
+    margin: 0 auto;
+    margin-top: 100px;
     width: 300px;
     height: 300px;
     background-color: #FFF;
-    right: 400px;
-    top: 300px;
     border: none;
 }
 .login .layui-tab-title{
