@@ -1,8 +1,8 @@
-// console.log('Hello');
+console.log('Hello');
 
-// setTimeout(() => {
-//     console.log('World');
-// }, 1000);
+setTimeout(() => {
+    console.log('World');
+}, 1000);
 
 let start = Date.now();
 
