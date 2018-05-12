@@ -2,6 +2,7 @@ var http = require('http');
 var fs   = require('fs');
 
 http.createServer((req, res) => {
+    console.log(req.headers);
     res.writeHead('200', {
         'Content-Type': 'image/jpg'
     });
