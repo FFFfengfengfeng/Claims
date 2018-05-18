@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "connect": "1.8.7"
+    "connect": "1.8.7",
+    "connect-redis": "^3.3.3",
+    "redis": "^2.8.0"
   }
 }
