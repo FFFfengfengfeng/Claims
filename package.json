@@ -19,6 +19,8 @@
   "homepage": "https://github.com/FFFfengfengfeng/Smashing-Node-Note#readme",
   "dependencies": {
     "colors": "^1.2.4",
+    "egg": "^2.8.1",
+    "element-ui": "^2.3.9",
     "superagent": "^3.8.3"
   }
 }

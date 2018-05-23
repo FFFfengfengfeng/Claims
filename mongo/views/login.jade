@@ -1,0 +1,16 @@
+extends ./layout
+block content
+
+    form(action="/login", method="post")
+        fieldset
+            legend Login in
+            p
+                label(for="email")
+                input(type="text", name="user[email]")
+            p
+                label(for="password")
+                input(type="password", name="user[password]")
+            p
+                button(type="submit") Login
+            p
+                a(href="/") Go back
