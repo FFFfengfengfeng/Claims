@@ -7,6 +7,15 @@ app.set('view engine', 'ejs');
 app.set('views', `${__dirname}/views`);
 app.set('view options', {layout: false});
 
+// 错误处理
+app.error(function(err, req, res, next) {
+    if (err.message === 'Bad Segmen response') {
+        res.render('error');
+    } else {
+        next();
+    }
+});
+
 // 路由
 // 首页
 app.get('/', function(req, res) {

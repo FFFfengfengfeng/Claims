@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>socket</title>
+</head>
+<body>
+    <h1>Socket.io 聊天室</h1>
+    <input type="text" placeholder="输入内容" id="input">
+    <a href="javascript:;" id="btn">发送</a>
+    <div id="content"></div>
+    <script src="https://lib.baomitu.com/socket.io/2.1.1/socket.io.dev.js"></script>
+    <script>
+        var id = -1;
+
+        var socket = io.connect('ws://localhost:7005');
+
+        socket.on('message', function (data) {
+            console.log(data);
+            if (!data.msg) {
+                id = data.id;
+            } else {
+                var p = document.createElement("p");
+                var txt = document.createTextNode(data.id + ': ' + data.msg);
+                p.appendChild(txt);
+                document.getElementById('content').appendChild(p);
+            }
+        });
+        document.getElementById('btn').onclick = function(e) {
+            var value = document.getElementById('input').value;
+            socket.emit('message', { msg: value, id:  id});
+        }
+    </script>
+</body>
+</html>
