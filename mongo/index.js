@@ -4,6 +4,24 @@ const express = require('express')
     , cookieParser = require('cookie-parser')
     , session = require('express-session');
 
+/** 
+ * connect the mongodb
+ */
+const server = mongodb.Server('127.0.0.1', 27017);
+
+new mongodb.Db('my-website', server).open((err, client) => {
+    if (err) {
+        throw err;
+    } else {
+        console.log('\033[96m + \033[39m connected to mongodb');
+        app.users = new mongodb.Collection(client, 'users');
+        /** 
+         * app listen 7005
+         */
+        app.listen(7005);
+    }
+});
+
 /**
  * create express app
  */
@@ -44,7 +62,3 @@ app.get('/sign', (req, res) => {
     res.render('sign');
 });
 
-/** 
- * app listen 7005
- */
-app.listen(7005);
