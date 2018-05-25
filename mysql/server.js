@@ -50,7 +50,41 @@ app.post('/create', (req, res, next) => {
 });
 // goods detail
 app.get('/item/:id', (req, res, next) => {
-    res.render('item');
+    function getItem(fn) {
+        db.query('SELECT * FROM item WHERE id = ? LIMIT 1', 
+            [req.params.id], 
+            (err, results) => {
+                if (err) {
+                    return next(err);
+                }
+                if (!results[0]) {
+                    return res.send(404);
+                } else {
+                    fn(results[0]);
+                }
+            }
+        );
+    }
+    function getReviews(item_id, fn) {
+        db.query('SELECT * FROM review WHERE item_id = ?', 
+            [item_id],
+            (err, results) => {
+                if (err) {
+                    return next(err);
+                } else {
+                    fn(results);
+                }
+            }
+        );
+    }
+    getItem((item) => {
+        getReviews(item.id, (reviews) => {
+            res.render('item', {
+                item: item,
+                reviews: reviews
+            });
+        });
+    });
 });
 // goods evaluate api
 app.post('/item/:id/review', (req, res, next) => {
