@@ -7,6 +7,20 @@ const express = require('express')
 const app = express();
 
 /**
+ * init sequelize
+ */
+const sequelize = new Sequelize('todo', 'root');
+
+/**
+ * project model
+ */
+const Project = sequelize.define('Project', {
+    title: Sequelize.STRING,
+    description: Sequelize.TEXT,
+    created: Sequelize.DATE
+});
+
+/**
  * configure for the app
  */
 app.set('view engine', 'jade');
