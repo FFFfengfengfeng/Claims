@@ -21,6 +21,13 @@ const Project = sequelize.define('Project', {
 });
 
 /**
+ * tasks model
+ */
+const Task = sequelize.define('Task', {
+    title: Sequelize.STRING
+});
+
+/**
  * configure for the app
  */
 app.set('view engine', 'jade');
