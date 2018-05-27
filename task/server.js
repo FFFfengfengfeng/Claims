@@ -28,6 +28,23 @@ const Task = sequelize.define('Task', {
 });
 
 /**
+ * set the league
+ */
+Task.belongsTo(Project);
+Project.hasMany(Task);
+
+/**
+ * sequelize sync
+ */
+sequelize.sync();
+
+/**
+ * express middleware
+ */
+app.use(express.static(`${__dirname}/public`)); 
+app.use(express.bodyParse());
+
+/**
  * configure for the app
  */
 app.set('view engine', 'jade');
